@@ -1,10 +1,10 @@
-import addIcon from "../../assets/icon/add-icon.svg";
+import { Icon } from '@iconify/react';
 
 const ButtonAdd = () => {
     return (
-        <button className="btn btn-add fw-bold d-flex align-items-center">
-            <img src={addIcon} alt="add" className="me-2" />
-            <span>Tambah</span>
+        <button className="btn-add fw-bold d-flex align-items-center">
+            <Icon icon="ant-design:plus-outlined" color="white" width="21" height="21" />
+            <span className="ms-2">Tambah</span>
         </button>
     )
 }

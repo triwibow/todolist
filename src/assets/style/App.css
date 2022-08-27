@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
 body {
     padding: 0;
     margin: 0;
     width: 100%;
     background-color: #E5E5E5;
+    font-family: 'Poppins', sans-serif;
 }
 
 header {
@@ -16,20 +19,34 @@ header {
     border-radius: 45px;
     color: #FFF;
     padding: 10px 20px;
-}
-
-.btn-add:hover {
     border: 1px solid #16ABF8;
-    color: #16ABF8;
 }
 
-.btn-delete {
+.btn-icon {
     border: none;
     background: transparent;
     padding: 0;
 }
 
+.btn-icon:hover {
+    border:1px solid transparent;
+}
+
+.btn-icon-circle {
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #a8a7a7;
+    background-color: transparent;
+}
+
 .btn-empty-state {
+    border: 1px solid transparent;
+    background: transparent;
+}
+
+.btn-back {
     border: 1px solid transparent;
     background: transparent;
 }
@@ -49,7 +66,7 @@ header {
     left: 0;
     bottom: 0;
     width: 100%;
-    padding: 10px 27px;
+    padding: 14px 27px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -59,4 +76,55 @@ header {
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
+}
+
+.list-item {
+    background: #FFFFFF;
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 24px;
+}
+
+.list-item-title {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    color: #888;
+    line-height: 0;
+}
+
+.dot {
+    height: 12px;
+    width: 12px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.form-check-input {
+    height: 24px;
+    width: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #c7c7c7;
+    margin-top: 0;
+    border-radius: 0;
+}
+
+.modal-title {
+    font-style: normal;
+    font-weight: 600;
+    color: #111111;
+}
+
+
+.form-label-custom {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    color: #111111;
 }

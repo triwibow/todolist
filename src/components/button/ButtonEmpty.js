@@ -1,9 +1,7 @@
-import emptyPng from "../../assets/icon/activity-empty-state.png";
-
-const ButtonEmpty = () => {
+const ButtonEmpty = (props) => {
     return (
         <button className="btn-empty-state mx-auto">
-            <img src={emptyPng} alt="empty" />
+            <img src={props.icon} alt="empty" />
         </button>
     )
 }

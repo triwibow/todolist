@@ -1,7 +1,7 @@
-import ButtonAdd from "../components/button/ButtonAdd";
-import CardList from "../components/card/CardList";
+import ButtonAdd from "../../components/button/ButtonAdd";
+import CardList from "../../components/card/CardList";
 
-const Dashboard = () => {
+const DashboardActivity = () => {
    return(
     <div className="container py-4">
         <div className="row">
@@ -22,4 +22,4 @@ const Dashboard = () => {
    )
 }
 
-export default Dashboard;
+export default DashboardActivity;
