@@ -8,6 +8,11 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
+main {
+    position: relative;
+    overflow-x: hidden;
+}
+
 header {
     width: 100%;
     background-color: #16ABF8;
@@ -49,6 +54,25 @@ header {
 .btn-back {
     border: 1px solid transparent;
     background: transparent;
+}
+
+
+.btn-confirm {
+    background: #ED4C5C;
+    border: 1px solid #ED4C5C;
+    border-radius: 45px;
+    font-weight: 600;
+    font-size: 18px;
+    color: #FFFFFF;
+}
+
+.btn-cancel {
+    background: #F4F4F4;
+    border: 1px solid #F4F4F4;
+    border-radius: 45px;
+    font-weight: 600;
+    font-size: 18px;
+    color: #4A4A4A;
 }
 
 .card-list {
@@ -127,4 +151,22 @@ header {
     font-weight: 600;
     font-size: 12px;
     color: #111111;
+}
+
+.alert-activity {
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    transform: translateX(400px);
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    padding: 10px 30px;
+}
+
+.alert-activity.show {
+    transform: translateX(0);
 }

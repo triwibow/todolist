@@ -7,6 +7,8 @@ import ListItem from "../../components/list/ListItem";
 import Dropdown from "../../components/dropdown/Dropdown";
 import Form from "./Form";
 
+import AlertActivity from "../../components/alert/AlertActivity";
+
 const NewActivity = () => {
    return(
     <div className="container py-4">
@@ -24,7 +26,7 @@ const NewActivity = () => {
                 </div>
                 
             </div>
-
+            <AlertActivity />
             <div className="col-md-12">
                 {/* <div className="row">
                     <div className="col-md-12 text-center">

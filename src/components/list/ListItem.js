@@ -1,5 +1,5 @@
 import ButtonEdit from "../button/ButtonEdit";
-import ButtonDelete from "../button/ButtonDelete";
+import ModalDelete from "../modal/ModalDelete";
 
 const ListItem = () => {
     return (
@@ -10,7 +10,7 @@ const ListItem = () => {
                 <h5 className="list-item-title mb-0 me-4">Telur 2kg</h5>
                 <ButtonEdit/>
             </div>
-            <ButtonDelete />
+            <ModalDelete />
         </div>
     )
 }
