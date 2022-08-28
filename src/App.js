@@ -1,3 +1,10 @@
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from 'react-router-dom';
+
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
 import './assets/style/App.css';
@@ -8,10 +15,15 @@ import NewActivity from './pages/new-activity/NewActivity';
 
 const App = () => {
   return(
-    <Main>
-      <Header />
-      <NewActivity />
-    </Main>
+    <Router>
+      <Main>
+        <Header />
+        <Routes>
+          <Route exact path="/" element={<DashboardActivity />} />
+          <Route exact path="/detail:id" element={<NewActivity />} />
+        </Routes>
+      </Main>
+    </Router>
   )
 }
 
