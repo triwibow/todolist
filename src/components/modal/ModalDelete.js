@@ -2,9 +2,8 @@ import { Icon } from '@iconify/react';
 
 const ModalDelete = (props) => {
     const handleClick = (id) => {
+        console.log(id);
         props.data.delete(id);
-
-
     }
 
     return (

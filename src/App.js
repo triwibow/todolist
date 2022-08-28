@@ -20,7 +20,9 @@ const App = () => {
         <Header />
         <Routes>
           <Route exact path="/" element={<DashboardActivity />} />
-          <Route exact path="/detail:id" element={<NewActivity />} />
+          <Route path="/detail">
+            <Route path=":id" element={<NewActivity/>}/>
+          </Route>
         </Routes>
       </Main>
     </Router>

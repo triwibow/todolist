@@ -1,5 +1,4 @@
 import {Link} from 'react-router-dom';
-import ButtonDelete from "../button/ButtonDelete";
 import ModalDelete from '../modal/ModalDelete';
 import Moment from 'react-moment';
 import 'moment/locale/id';

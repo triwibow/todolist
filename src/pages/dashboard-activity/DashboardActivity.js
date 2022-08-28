@@ -128,8 +128,6 @@ const DashboardActivity = () => {
                     return item.id !== id
                 })
             });
-
-            console.log(data.length);
             setStatus({
                 status: true,
                 loading:false,
