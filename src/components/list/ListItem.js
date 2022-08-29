@@ -40,7 +40,7 @@ const ListItem = (props) => {
             <div className="d-flex align-items-center">
                 <input data-cy="todo-item-checkbox" className="me-3 form-check-input" type="checkbox" />
                 <span data-cy="todo-item-priority-indicator" style={{backgroundColor:getColor()}} className="dot me-3"></span>
-                <h5 className="list-item-title mb-0 me-4">{props.data.title}</h5>
+                <h5 data-cy="todo-item-title" className="list-item-title mb-0 me-4">{props.data.title}</h5>
                 <button onClick={handleClick} className="btn-icon" data-bs-toggle="modal" data-bs-target={"#edit"}>
                     <Icon icon="cil:pencil" color="#c4c4c4" />
                 </button>

@@ -97,14 +97,13 @@ const Form = (props) => {
                     </div>
                     <div className='form-group mb-3'>
                         <label data-cy="modal-add-priority-title" className='form-label-custom mb-2'>Priority</label>
-                        <div style={{width: "30%"}}> 
+                        <div data-cy="modal-add-priority-dropdown" style={{width: "30%"}}> 
                             <Select 
                                 defaultValue={selectedOption}
                                 options={options}
                                 onChange={handleSelectChange}
                                 name="priority"
                                 components={{ Option: IconOption }} 
-                                data-cy="modal-add-priority-dropdown"
                             />
                         </div>
                     </div>
