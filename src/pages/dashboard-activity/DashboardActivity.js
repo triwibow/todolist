@@ -91,6 +91,7 @@ const DashboardActivity = () => {
 
         } catch(e)
         {
+            console.log(e);
             setStatus({
                 status: true,
                 loading:false,

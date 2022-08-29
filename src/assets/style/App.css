@@ -199,3 +199,18 @@ header {
 .link {
     text-decoration: none;
 }
+
+.form-title {
+    background-color: transparent;
+    color: #000;
+    border: 1px solid transparent;
+    border-bottom: 1px solid #000000;
+    font-weight: 700;
+    font-size: 28px;
+    color: #111111;
+    width: fit-content;
+}
+
+.form-title:focus {
+    outline: none;
+}

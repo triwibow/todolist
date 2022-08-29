@@ -1,7 +1,24 @@
 import { Icon } from '@iconify/react';
+import { useEffect, useState } from 'react';
+import Select, {components} from 'react-select'
+
+const { Option } = components;
+
+const IconOption = (props) => {
+    return (
+        <Option {...props}>
+            <span className="dot me-3" style={{backgroundColor:props.data.color}}></span>
+            {props.data.label}
+        </Option>
+    );
+}
 
 const Form = (props) => {
-
+    const [selectedOption, setSelectedOption] = useState({
+        name: "priority",
+        value:"very-high",
+        label: "Very High"
+    });
     const handleSubmit = (event)=> {
         event.preventDefault();
         props.submit();
@@ -10,6 +27,26 @@ const Form = (props) => {
     const handleChange = (event) => {
         props.change(event);
     }
+
+    const handleSelectChange = (event) => {
+        setSelectedOption({
+            ...selectedOption,
+            value: event.value,
+            label: event.label
+        });        
+    }
+
+    const options = [
+        { value: 'very-high', label: 'Very High', color:'#ED4C5C' },
+        { value: 'high', label: 'High', color:'#F8A541' },
+        { value: 'normal', label: 'Normal', color:'#00A790' },
+        { value: 'low', label:'Low', color:'#428BC1'},
+        { value: 'very-low', label:'Very Low', color:'#8942C1'}
+    ]
+
+    useEffect(() => {
+        props.change({target:selectedOption})
+    }, [selectedOption.value]);
 
     return (
         <>
@@ -36,15 +73,17 @@ const Form = (props) => {
                                     value={props.data.title} 
                                 />
                             </div>
-                            <div className="form-group mb-3">
-                                <label className="form-label-custom mb-2">PRIORITY</label>
-                                <select value={props.data.priority} className="form-control" name="priority" onChange={handleChange}>
-                                    <option value="very-high">Very High</option>
-                                    <option value="high">High</option>
-                                    <option value="normal">Normal</option>
-                                    <option value="low">Low</option>
-                                    <option value="very-low">Very Low</option>
-                                </select>
+                            <div className='form-group mb-3'>
+                                <label className='form-label-custom mb-2'>Priority</label>
+                                <div style={{width: "30%"}}> 
+                                    <Select 
+                                        defaultValue={selectedOption}
+                                        options={options}
+                                        onChange={handleSelectChange}
+                                        name="priority"
+                                        components={{ Option: IconOption }} 
+                                    />
+                                </div>
                             </div>
                         </div>
                         <div className="modal-footer">

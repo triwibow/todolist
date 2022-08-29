@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import {useParams} from "react-router-dom";
 import { API } from "../../config/api";
 import {Link} from "react-router-dom";
+import { Icon } from '@iconify/react';
 import emptyPng from "../../assets/icon/todo-empty-state.png";
 import BackNavigation from "../../components/navigation/BackNavigation";
 import ButtonEmpty from "../../components/button/ButtonEmpty";
@@ -20,11 +21,13 @@ const NewActivity = () => {
     const [error, setError] = useState(false);
     const [data, setData] = useState([]);
     const [editId, setEditId] = useState(-1);
+    const [title, setTitle] = useState("Activity");
+    const [openTitle, setOpenTitle] = useState(false);
 
     const [formData, setFormData] = useState({
         activity_group_id: id,
         title: "",
-        priority: "very-high"
+        priority: ""
 
     });
     const [status, setStatus] = useState({
@@ -38,6 +41,43 @@ const NewActivity = () => {
             ...formData,
             [event.target.name] : event.target.value
         });
+    }
+
+    const loadDetail = async () => {
+        try {
+            const response = await API.get("/activity-groups", {
+                params:{
+                    id: id
+                }
+            });
+
+            if(response.status !== 200){
+                setError(true);
+                setLoading(false);
+                return;
+            }
+            
+            if(response.data.data.length < 1){
+                setError(true);
+                setLoading(false);
+                return;
+            }
+
+            setTitle(response.data.data[0].title);
+            setError(false);
+            setLoading(false);
+
+
+        } catch(e)
+        {
+            setError(true);
+            setLoading(false);
+            setStatus({
+                status: true,
+                loading:false,
+                message: "Terjadi kesalahan saat mengambil data"
+            });
+        }
     }
 
     const loadData = async () => {
@@ -124,6 +164,8 @@ const NewActivity = () => {
                 message: "Berhasil menambahkan activity"
             });
 
+            setError(false);
+
         } catch(e)
         {
             setStatus({
@@ -189,6 +231,7 @@ const NewActivity = () => {
             const response = await API.delete(`/todo-items/${id}`);
             
             if(response.status !== 200){
+                setError(true);
                 setStatus({
                     status:true,
                     loading:false,
@@ -203,11 +246,20 @@ const NewActivity = () => {
                 })
             });
 
+
             setStatus({
                 status: true,
                 loading:false,
                 message: "Berhasil menghapus activity"
             });
+
+            
+
+            if((data.length - 1) === 0){
+                setError(true);
+            } else {
+                setError(false);
+            }
 
         } catch(e)
         {
@@ -216,11 +268,17 @@ const NewActivity = () => {
                 loading:false,
                 message: "Terjadi kesalahan"
             });
+
+            setError(true);
         }
     }
 
     useEffect(() => {
         loadData();
+    }, []);
+
+    useEffect(() => {
+        loadDetail();
     }, [])
 
     return(
@@ -238,7 +296,22 @@ const NewActivity = () => {
                         <Link to="/" className="link">
                             <BackNavigation />
                         </Link>
-                        <h3 className="fw-bold mb-0">Activity</h3>
+                        <div>
+                            {!openTitle ? (
+                                <h3 style={{fontSize:"28px"}} className="fw-bold mb-0">{title}</h3>
+                            ): (
+                                <input 
+                                    className="form-title" 
+                                    type="text" 
+                                    value={title} 
+                                    onChange={(e) => setTitle(e.target.value)}
+                                />
+                            )}
+                            
+                        </div>
+                        <button type="button" className="btn-icon ms-4" onClick={() => setOpenTitle((openTitle)? false:true)}>
+                            <Icon icon="cil:pencil" color="#c4c4c4" />
+                        </button>
                     </div>
                     <div className="d-flex align-items-center">
                         <Dropdown
