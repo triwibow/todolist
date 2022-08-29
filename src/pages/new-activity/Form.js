@@ -65,7 +65,7 @@ const Form = (props) => {
 
     return (
         <>
-        <Button data-cy="modal-add" className="btn-add" onClick={handleShow}>
+        <Button data-cy="todo-add-button" className="btn-add" onClick={handleShow}>
             <Icon icon="ant-design:plus-outlined" color="white" width="21" height="21" />
             <span className="ms-2">Tambah</span>
         </Button>
@@ -104,6 +104,7 @@ const Form = (props) => {
                                 onChange={handleSelectChange}
                                 name="priority"
                                 components={{ Option: IconOption }} 
+                                data-cy="modal-add-priority-dropdown"
                             />
                         </div>
                     </div>
