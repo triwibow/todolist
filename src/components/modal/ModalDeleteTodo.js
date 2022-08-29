@@ -3,7 +3,7 @@ import Modal from 'react-bootstrap/Modal';
 import  Button  from 'react-bootstrap/Button';
 import { useState } from 'react';
 
-const ModalDelete = (props) => {
+const ModalDeleteTodo = (props) => {
     const handleClick = (id) => {
         props.delete(id);
         handleClose();
@@ -16,7 +16,7 @@ const ModalDelete = (props) => {
 
     return (
         <>
-        <Button data-cy="activity-item-delete-button" className="btn-icon" onClick={handleShow}>
+        <Button data-cy="todo-item-delete-button" className="btn-icon" onClick={handleShow}>
             <Icon icon="material-symbols:delete-outline" color="#c4c4c4" width="30" height="30" />
         </Button>
         <Modal
@@ -32,7 +32,7 @@ const ModalDelete = (props) => {
                 <div className="mb-3" data-cy="modal-delete-icon">
                     <Icon icon="akar-icons:triangle-alert" color="#ed4c5c" width="140" height="100" />
                 </div>
-                <span className="d-block">Apakah anda yakin menghapus activity </span>
+                <span className="d-block">Apakah anda yakin menghapus item </span>
                 <strong>“{props.title}”?</strong>
                 <div className="d-flex justify-content-center mt-5">
                     <Button
@@ -57,4 +57,4 @@ const ModalDelete = (props) => {
     )
 }
 
-export default ModalDelete;
+export default ModalDeleteTodo;
