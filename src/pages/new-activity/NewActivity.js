@@ -125,6 +125,16 @@ const NewActivity = () => {
 
     }
 
+    const getDetail = async (id) => {
+        try {
+            const response = await API.get(`/todo-items/${id}`);
+            console.log(response);
+        } catch(e)
+        {   
+
+        }
+    }
+
     const addData = async () => {
         try {
             setStatus({
@@ -305,11 +315,12 @@ const NewActivity = () => {
                                     type="text" 
                                     value={title} 
                                     onChange={(e) => setTitle(e.target.value)}
+                                    data-cy="todo-title"
                                 />
                             )}
                             
                         </div>
-                        <button data-cy="todo-title-edit-button" type="button" className="btn-icon ms-4" onClick={() => setOpenTitle((openTitle)? false:true)}>
+                        <button data-cy="todo-title" type="button" className="btn-icon ms-4" onClick={() => setOpenTitle((openTitle)? false:true)}>
                             <Icon icon="cil:pencil" color="#c4c4c4" />
                         </button>
                     </div>
@@ -344,7 +355,7 @@ const NewActivity = () => {
                                                 key={item.id}
                                                 data={item}
                                                 setEditId={setEditId}
-                                                dataById={(id)=>getDataById(id)}
+                                                getDetail={(id)=>getDetail(id)}
                                                 delete={(id) => deleteData(id)}
                                             />
                                 })}

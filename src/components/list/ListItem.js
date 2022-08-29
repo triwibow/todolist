@@ -5,6 +5,7 @@ const ListItem = (props) => {
     const handleClick = () => {
         props.setEditId(props.data.id);
         props.dataById(props.data.id);
+        props.getDetail(props.id);
     }
 
     const getColor = () => {
