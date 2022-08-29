@@ -1,6 +1,9 @@
 import { Icon } from '@iconify/react';
 import { useEffect, useState } from 'react';
-import Select, {components} from 'react-select'
+import Select, {components} from 'react-select';
+import Modal from 'react-bootstrap/Modal';
+import Button  from 'react-bootstrap/Button';
+
 
 const { Option } = components;
 
@@ -14,6 +17,11 @@ const IconOption = (props) => {
 }
 
 const Form = (props) => {
+    const [show, setShow] = useState(false);
+    const [disable, setDisable] = useState("disabled");
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     const [selectedOption, setSelectedOption] = useState({
         name: "priority",
         value:"very-high",
@@ -25,6 +33,13 @@ const Form = (props) => {
     }
 
     const handleChange = (event) => {
+        if(event.target.name === "title"){
+            if(event.target.value === ""){
+                setDisable("disabled");
+            } else {
+                setDisable("");
+            }
+        }
         props.change(event);
     }
 
@@ -50,51 +65,64 @@ const Form = (props) => {
 
     return (
         <>
-        <button data-cy="todo-add-button" type="button" className="btn-add fw-bold d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <Button data-cy="modal-add" className="btn-add" onClick={handleShow}>
             <Icon icon="ant-design:plus-outlined" color="white" width="21" height="21" />
             <span className="ms-2">Tambah</span>
-        </button>
-        <div className="modal modal-lg fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div className="modal-dialog modal-dialog-centered">
-                <div className="modal-content p-3">
-                    <div className="modal-header">
-                        <h5 data-cy="modal-add-title" className="modal-title" id="exampleModalLabel">Tambah List Item</h5>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </Button>
+        <Modal
+            show={show}
+            onHide={handleClose}
+            keyboard={false}
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+            className="modal-delete"
+            data-cy="modal-add"
+        >
+            <Modal.Header>
+                <h5 data-cy="modal-add-title" className="modal-title" id="exampleModalLabel">Tambah List Item</h5>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </Modal.Header>
+            <form onSubmit={handleSubmit}>
+                <Modal.Body>
+                    <div className="form-group mb-3">
+                        <label data-cy="modal-add-name-title" className="form-label-custom mb-2">NAMA LIST ITEM</label>
+                        <input 
+                            data-cy="modal-add-name-input"
+                            name="title" 
+                            type="text" 
+                            className="form-control" 
+                            onChange={handleChange}
+                            value={props.data.title} 
+                        />
                     </div>
-                    <form onSubmit={handleSubmit}>
-                        <div className="modal-body">        
-                            <div className="form-group mb-3">
-                                <label data-cy="modal-add-name-title" className="form-label-custom mb-2">NAMA LIST ITEM</label>
-                                <input 
-                                    data-cy="modal-add-name-input"
-                                    name="title" 
-                                    type="text" 
-                                    className="form-control" 
-                                    onChange={handleChange}
-                                    value={props.data.title} 
-                                />
-                            </div>
-                            <div className='form-group mb-3'>
-                                <label data-cy="modal-add-priority-title" className='form-label-custom mb-2'>Priority</label>
-                                <div style={{width: "30%"}}> 
-                                    <Select 
-                                        defaultValue={selectedOption}
-                                        options={options}
-                                        onChange={handleSelectChange}
-                                        name="priority"
-                                        components={{ Option: IconOption }} 
-                                    />
-                                </div>
-                            </div>
+                    <div className='form-group mb-3'>
+                        <label data-cy="modal-add-priority-title" className='form-label-custom mb-2'>Priority</label>
+                        <div style={{width: "30%"}}> 
+                            <Select 
+                                defaultValue={selectedOption}
+                                options={options}
+                                onChange={handleSelectChange}
+                                name="priority"
+                                components={{ Option: IconOption }} 
+                            />
                         </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button data-cy="modal-add-save-button" type="submit" className="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+                    </div>
+                </Modal.Body>
+                <Modal.Footer>
+                    <button onClick={handleClose} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button 
+                        onClick={handleClose} 
+                        data-cy="modal-add-save-button" 
+                        type="submit" 
+                        className="btn btn-primary"
+                        disabled={disable}
+                    >
+                        Save changes
+                    </button>
+                </Modal.Footer>
+            </form>
+            
+        </Modal>
         </>
     )
 }
