@@ -1,4 +1,4 @@
-import ModalDelete from "../modal/ModalDelete";
+import ModalDeleteActivity from "../modal/ModalDeleteActivity";
 import { Icon } from '@iconify/react';
 
 const ListItem = (props) => {
@@ -44,7 +44,7 @@ const ListItem = (props) => {
                     <Icon icon="cil:pencil" color="#c4c4c4" />
                 </button>
             </div>
-            <ModalDelete desc="Apakah anda yakin menghapus item " cy="todo-item-delete-button" cy2="modal-delete-confirm-button" data={props} />
+            <ModalDeleteActivity desc="Apakah anda yakin menghapus item " cy="todo-item-delete-button" cy2="modal-delete-confirm-button" data={props} />
         </div>
     )
 }
