@@ -11,7 +11,7 @@ const ModalDelete = (props) => {
         <button className="btn-icon" data-bs-toggle="modal" data-bs-target={"#modal-delete-" + props.data.data.id} data-cy={props.cy}>
             <Icon icon="material-symbols:delete-outline" color="#c4c4c4" width="30" height="30" />
         </button>
-        <div data-cy="todo-modal-delete" className="modal fade modal-delete" id={"modal-delete-" + props.data.data.id} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div data-cy="modal-delete" className="modal fade modal-delete" id={"modal-delete-" + props.data.data.id} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog modal-dialog-centered">
                 <div className="modal-content p-3">
                     <div className="modal-body text-center">
