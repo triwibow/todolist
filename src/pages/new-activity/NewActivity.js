@@ -298,7 +298,7 @@ const NewActivity = () => {
                         </Link>
                         <div>
                             {!openTitle ? (
-                                <h3 style={{fontSize:"28px"}} className="fw-bold mb-0">{title}</h3>
+                                <h3 data-cy="todo-title" style={{fontSize:"28px"}} className="fw-bold mb-0">{title}</h3>
                             ): (
                                 <input 
                                     className="form-title" 
@@ -309,7 +309,7 @@ const NewActivity = () => {
                             )}
                             
                         </div>
-                        <button type="button" className="btn-icon ms-4" onClick={() => setOpenTitle((openTitle)? false:true)}>
+                        <button data-cy="todo-title-edit-button" type="button" className="btn-icon ms-4" onClick={() => setOpenTitle((openTitle)? false:true)}>
                             <Icon icon="cil:pencil" color="#c4c4c4" />
                         </button>
                     </div>

@@ -154,7 +154,7 @@ const DashboardActivity = () => {
         <AlertActivity status={status} setStatus={setStatus}/>
         <div className="row">
             <div className="col-md-12 d-flex align-items-center justify-content-between mb-5">
-                <h3 className="fw-bold">Activity</h3>
+                <h3 data-cy="activity-title" className="fw-bold">Activity</h3>
                 <ButtonAdd click={() =>addData()}/>
             </div>
 

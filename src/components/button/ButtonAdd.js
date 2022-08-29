@@ -8,7 +8,7 @@ const ButtonAdd = (props) => {
     }
 
     return (
-        <button onClick={_handleClick} className="btn-add fw-bold d-flex align-items-center">
+        <button onClick={_handleClick} className="btn-add fw-bold d-flex align-items-center" data-cy="activity-add-button">
             {loading? (
                 <div className="spinner-border text-light spinner-border-sm mx-auto" role="status">
                     <span className="sr-only"></span>

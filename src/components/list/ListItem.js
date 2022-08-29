@@ -35,16 +35,16 @@ const ListItem = (props) => {
     }
 
     return (
-        <div className="list-item mb-3">
+        <div className="list-item mb-3" data-cy="todo-item">
             <div className="d-flex align-items-center">
-                <input className="me-3 form-check-input" type="checkbox" />
-                <span style={{backgroundColor:getColor()}} className="dot me-3"></span>
+                <input data-cy="todo-item-checkbox" className="me-3 form-check-input" type="checkbox" />
+                <span data-cy="todo-item-priority-indicator" style={{backgroundColor:getColor()}} className="dot me-3"></span>
                 <h5 className="list-item-title mb-0 me-4">{props.data.title}</h5>
                 <button onClick={handleClick} className="btn-icon" data-bs-toggle="modal" data-bs-target={"#edit"}>
                     <Icon icon="cil:pencil" color="#c4c4c4" />
                 </button>
             </div>
-            <ModalDelete data={props} />
+            <ModalDelete desc="Apakah anda yakin menghapus item " cy="todo-item-delete-button" data={props} />
         </div>
     )
 }
