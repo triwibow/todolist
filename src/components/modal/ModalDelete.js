@@ -22,7 +22,7 @@ const ModalDelete = (props) => {
                         <strong>“{props.data.data.title}”?</strong>
                         <div className="d-flex justify-content-center mt-5">
                             <button data-cy="modal-delete-cancel-button" type="button" className="btn-cancel px-5 py-2 me-3" data-bs-dismiss="modal">Batal</button>
-                            <button data-cy="modal-delete-confirm-button" data-bs-dismiss="modal" onClick={() => handleClick(props.data.data.id)} type="button" className="btn-confirm px-5 py-2">Hapus</button>
+                            <button data-cy="activity-item-delete-button" data-bs-dismiss="modal" onClick={() => handleClick(props.data.data.id)} type="button" className="btn-confirm px-5 py-2">Hapus</button>
                         </div>
                     </div>
                 </div>
