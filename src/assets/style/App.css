@@ -92,6 +92,11 @@ header {
     height: 234px;
 }
 
+.card-list-body {
+    height: 158px;
+    cursor: pointer;
+}
+
 .card-list-footer {
     position:absolute;
     left: 0;
