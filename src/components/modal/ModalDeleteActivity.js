@@ -16,7 +16,7 @@ const ModalDelete = (props) => {
 
     return (
         <>
-        <Button className="btn-icon" onClick={handleShow}>
+        <Button data-cy="activity-item-delete-button" className="btn-icon" onClick={handleShow}>
             <Icon icon="material-symbols:delete-outline" color="#c4c4c4" width="30" height="30" />
         </Button>
         <Modal
@@ -45,7 +45,7 @@ const ModalDelete = (props) => {
                     <Button
                         onClick={() => handleClick(props.id)}
                         className="btn-confirm px-5 py-2"
-                        data-cy={props.cy2}
+                        data-cy="activity-item-delete-button"
                     >
                         Hapus
                     </Button>
