@@ -22,7 +22,7 @@ const AlertActivity = (props) => {
     },[props.status.status])
 
     return (
-        <div className={'alert-activity '+mode}>
+        <div data-cy="data-cy=modal-information" className={'alert-activity '+mode}>
             <Icon icon="akar-icons:circle-alert" color="#00a790" width="30" height="30" />
             <span className="ms-3">{props.status.message}</span>
         </div>

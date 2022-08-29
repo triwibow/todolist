@@ -9,16 +9,16 @@ const CardList = (props) => {
             <div className="card-list">
                 <Link className="link" to={props.to}>
                     <div className="card-list-body">
-                        <h5 data-cy="activity-item-title" className="text-title">{props.data.title}</h5>
+                        <h5 className="text-title">{props.data.title}</h5>
                     </div>
                 </Link>
                 <div className="card-list-footer">
-                    <span className="text-date" data-cy="activity-item-date">
+                    <span className="text-date" >
                         <Moment format="DD MMMM YYYY" locale="id">
                             {props.data.created_at}
                         </Moment>
                     </span>
-                    <ModalDelete cy="todo-modal-delete" desc="Apakah anda yakin menghapus activity " data={props} />
+                    <ModalDelete cy="activity-item-delete-button" data={props} />
                 </div>
             </div>
         </div>

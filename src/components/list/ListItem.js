@@ -44,7 +44,7 @@ const ListItem = (props) => {
                     <Icon icon="cil:pencil" color="#c4c4c4" />
                 </button>
             </div>
-            <ModalDelete desc="Apakah anda yakin menghapus item " cy="todo-item-delete-button" data={props} />
+            <ModalDelete desc="Apakah anda yakin menghapus item " cy="todo-item-delete-button" cy2="modal-delete-confirm-button" data={props} />
         </div>
     )
 }
