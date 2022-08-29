@@ -40,7 +40,7 @@ const ModalDeleteTodo = (props) => {
                         className="btn-cancel px-5 py-2 me-3"
                         data-cy="modal-delete-cancel-button"
                     >
-                        Hapus
+                        Batal
                     </Button>
                     <Button
                         onClick={() => handleClick(props.id)}
