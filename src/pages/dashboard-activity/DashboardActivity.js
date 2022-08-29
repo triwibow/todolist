@@ -128,6 +128,8 @@ const DashboardActivity = () => {
                 message: "Berhasil menghapus activity"
             });
 
+            loadData();
+
         } catch(e)
         {
             setStatus({
