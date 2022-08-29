@@ -18,7 +18,7 @@ const CardList = (props) => {
                             {props.data.created_at}
                         </Moment>
                     </span>
-                    <ModalDelete cy="activity-item-delete-button" data={props} />
+                    <ModalDelete desc="Apakah anda yakin menghapus activity " cy="activity-item-delete-button" data={props} />
                 </div>
             </div>
         </div>

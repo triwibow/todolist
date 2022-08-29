@@ -74,20 +74,13 @@ const DashboardActivity = () => {
                 return;
             }
 
-            const result = await response.data;
-
-            setData(arr => {
-                return [
-                    ...arr,
-                    result
-                ]
-            });
-
             setStatus({
                 status: true,
                 loading:false,
                 message: "Berhasil menambahkan activity"
             });
+
+            loadData();
 
         } catch(e)
         {
