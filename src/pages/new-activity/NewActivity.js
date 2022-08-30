@@ -381,10 +381,10 @@ const NewActivity = () => {
 
         if(val === "az"){
             const tmp = [...data].sort((a, b) => {
-                if (b.title > a.title) {
+                if (b.title.toLowerCase() > a.title.toLowerCase()) {
                     return -1;
                 }
-                if (a.title > b.title) {
+                if (a.title.toLowerCase() > b.title.toLowerCase()) {
                     return 1;
                 }
                 return 0;
@@ -395,10 +395,10 @@ const NewActivity = () => {
 
         if(val === "za"){
             const tmp = [...data].sort((a, b) => {
-                if (a.title > b.title) {
+                if (a.title.toLowerCase() > b.title.toLowerCase()) {
                     return -1;
                 }
-                if (b.title > a.title) {
+                if (b.title.toLowerCase() > a.title.toLowerCase()) {
                     return 1;
                 }
                 return 0;
