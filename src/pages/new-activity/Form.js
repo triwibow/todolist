@@ -28,6 +28,12 @@ const Form = (props) => {
         priority: ""
     });
 
+    const [showPriority, setShowPriority] = useState({
+        status: false,
+        value: "",
+        label: "Pilih Priority"
+    });
+
     const [selectedOption, setSelectedOption] = useState({
         name: "priority",
         value:"very-high",
@@ -36,6 +42,15 @@ const Form = (props) => {
     const handleSubmit = (event)=> {
         event.preventDefault();
         setDisable("disabled");
+        setShowPriority({
+            status: false,
+            value: "",
+            label: "Pilih Priority"
+        });
+        setValidator({
+            title: "",
+            priority: ""
+        })
         props.submit();
     }
 
@@ -55,6 +70,26 @@ const Form = (props) => {
             value: event.value,
             label: event.label
         });        
+    }
+
+    const clickDropdown = () => {
+        setShowPriority({
+            ...showPriority,
+            status: true
+        })
+    }
+
+    const selectPriority = (event) => {
+        setShowPriority({
+            status: false,
+            value: event.target.value,
+            label: event.target.getAttribute('label')
+        });
+        setValidator({
+            ...validator,
+            [event.target.name]:event.target.value
+        })
+        props.change(event);
     }
 
     const options = [
@@ -108,7 +143,7 @@ const Form = (props) => {
                     </div>
                     <div className='form-group mb-3'>
                         <label data-cy="modal-add-priority-title" className='form-label-custom mb-2'>Priority</label>
-                        <div style={{width: "30%"}}> 
+                        <div style={{width: "40%", position:'relative'}}> 
                             {/* <Select 
                                 defaultValue={selectedOption}
                                 options={options}
@@ -116,15 +151,29 @@ const Form = (props) => {
                                 name="priority"
                                 components={{ Option: IconOption }} 
                             /> */}
-                            <select data-cy="modal-add-priority-dropdown" className="select-priority" name="priority" onChange={handleChange}>
+                            {/* <select data-cy="modal-add-priority-dropdown" className="select-priority" name="priority" onChange={handleChange}>
                                 <option data-cy="modal-add-priority-item" value="">Pilih Priority</option>
                                 <option data-cy="modal-add-priority-item" value="very-high">Very High</option>
                                 <option data-cy="modal-add-priority-item" value="high">High</option>
                                 <option data-cy="modal-add-priority-item" value="normal">Normal</option>
                                 <option data-cy="modal-add-priority-item" value="low">Low</option>
                                 <option data-cy="modal-add-priority-item" value="very-low">Very Low</option>
-                            </select>
+                            </select> */}
+                            
+                            <button data-cy="modal-add-priority-dropdown" type="button" className="select-priority" name="priority" onClick={clickDropdown}>
+                                {showPriority.label}
+                            </button>
 
+                            {showPriority.status && (
+                               <div className="priority-group">
+                                    <button data-cy="modal-add-priority-item" label="Pilih Priority" onClick={selectPriority} name="priority" value="" className="priority-item">Pilih Priority</button>
+                                    <button data-cy="modal-add-priority-item" label="Very High" onClick={selectPriority} name="priority" value="very-high" className="priority-item">Very High</button>
+                                    <button data-cy="modal-add-priority-item" label="High" onClick={selectPriority} name="priority" value="high" className="priority-item">High</button>
+                                    <button data-cy="modal-add-priority-item" label="Normal" onClick={selectPriority} name="priority" value="normal" className="priority-item">Normal</button>
+                                    <button data-cy="modal-add-priority-item" label="Low" onClick={selectPriority} name="priority" value="low" className="priority-item">Low</button>
+                                    <button data-cy="modal-add-priority-item" label="Very Low" onClick={selectPriority} name="priority" value="very-low" className="priority-item">Very Low</button>
+                               </div>
+                            )}
                         </div>
                     </div>
                 </Modal.Body>

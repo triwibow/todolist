@@ -223,5 +223,28 @@ header {
 .select-priority {
     width: 100%;
     border: 1px solid #ced4da;
-    padding: 4px 2px;
+    background: #FFF;
+    border-radius: 3px;
+    text-align: left;
+    padding: 5px 10px;
+}
+
+.priority-group {
+    position: absolute;
+    background: #FFF;
+    border: 1px solid #ced4da;
+    top: 100%;
+    left: 0;
+    width: 100%;
+}
+
+.priority-item {
+    display: block;
+    background: none;
+    border: 1px solid transparent;
+    border-bottom: 1px solid #eee;
+    width: 100%;
+    margin-bottom: 10px;
+    text-align: left;
+    padding: 5px 10px;
 }
