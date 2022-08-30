@@ -41,17 +41,6 @@ const Form = (props) => {
     const handleSubmit = (event)=> {
         event.preventDefault();
         props.submit();
-        setValidator({
-            title: "",
-            priority:""
-        });
-
-        setShowPriority({
-            status: false,
-            value: "",
-            label: "Pilih Priority"
-        });
-
         handleClose();
     }
 
@@ -103,6 +92,16 @@ const Form = (props) => {
 
     const handleClose = () => {
         setShow(false);
+        setValidator({
+            title: "",
+            priority:""
+        });
+
+        setShowPriority({
+            status: false,
+            value: "",
+            label: "Pilih Priority"
+        });
     }
 
     const handleShow = () => {
@@ -138,7 +137,7 @@ const Form = (props) => {
                 <h5 data-cy="modal-add-title" className="modal-title" id="exampleModalLabel">Tambah List Item</h5>
                 <button onClick={handleClose} type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </Modal.Header>
-            <form onSubmit={handleSubmit}>
+            
                 <Modal.Body>
                     <div className="form-group mb-3">
                         <label data-cy="modal-add-name-title" className="form-label-custom mb-2">NAMA LIST ITEM</label>
@@ -192,11 +191,12 @@ const Form = (props) => {
                         type="submit" 
                         className="btn btn-primary"
                         disabled={disable}
+                        id="AddFormSubmit"
+                        onClick={handleSubmit}
                     >
                         Save changes
                     </button>
                 </Modal.Footer>
-            </form>
         </Modal>
         )}
         </>
