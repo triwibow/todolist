@@ -166,7 +166,6 @@ const Form = (props) => {
 
                             {showPriority.status && (
                                <div className="priority-group">
-                                    <button data-cy="modal-add-priority-item" label="Pilih Priority" onClick={selectPriority} name="priority" value="" className="priority-item">Pilih Priority</button>
                                     <button data-cy="modal-add-priority-item" label="Very High" onClick={selectPriority} name="priority" value="very-high" className="priority-item">Very High</button>
                                     <button data-cy="modal-add-priority-item" label="High" onClick={selectPriority} name="priority" value="high" className="priority-item">High</button>
                                     <button data-cy="modal-add-priority-item" label="Normal" onClick={selectPriority} name="priority" value="normal" className="priority-item">Normal</button>

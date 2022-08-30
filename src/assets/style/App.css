@@ -248,3 +248,7 @@ header {
     text-align: left;
     padding: 5px 10px;
 }
+
+.line-through {
+    text-decoration: line-through;
+}
