@@ -137,6 +137,7 @@ const NewActivity = () => {
 
     const addData = async () => {
         try {
+            setLoading(true);
             setStatus({
                 status:false,
                 loading: true,
@@ -150,6 +151,7 @@ const NewActivity = () => {
                     loading:false,
                     message: "Terjadi Kesalahan"
                 })
+                setLoading(false);
                 return;
             }
 
@@ -175,6 +177,7 @@ const NewActivity = () => {
             });
 
             setError(false);
+            setLoading(false);
 
         } catch(e)
         {
