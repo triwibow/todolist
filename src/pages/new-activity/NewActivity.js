@@ -128,7 +128,7 @@ const NewActivity = () => {
     const getDetail = async (id) => {
         try {
             const response = await API.get(`/todo-items/${id}`);
-            console.log(response);
+           
         } catch(e)
         {   
 
@@ -359,6 +359,71 @@ const NewActivity = () => {
         }
     }
 
+    const sortItem = (val) => {
+        console.log(val);
+        console.log(data);
+
+        if(val === "baru"){
+            const tmp = [...data].sort((a, b) => {
+                return a.id - b.id;
+            });
+
+            setData(tmp);
+        }
+
+        if(val === "lama"){
+            const tmp = [...data].sort((a, b) => {
+                return b.id - a.id;
+            });
+
+            setData(tmp);
+        }
+
+        if(val === "az"){
+            const tmp = [...data].sort((a, b) => {
+                if (b.title > a.title) {
+                    return -1;
+                }
+                if (a.title > b.title) {
+                    return 1;
+                }
+                return 0;
+            });
+
+            setData(tmp);
+        }
+
+        if(val === "za"){
+            const tmp = [...data].sort((a, b) => {
+                if (a.title > b.title) {
+                    return -1;
+                }
+                if (b.title > a.title) {
+                    return 1;
+                }
+                return 0;
+            });
+
+            setData(tmp);
+        }
+
+        if(val === "belum-selesai"){
+            const notEnd = [...data].filter(item => {
+                return item.is_active === 1;
+            });
+
+            const end = [...data].filter(item  => {
+                return item.is_active === 0;
+            });
+
+            const tmp = notEnd.concat(end);
+
+            console.log(tmp);
+            setData(tmp);
+
+        }
+    }
+
     useEffect(() => {
         loadData();
     }, []);
@@ -414,6 +479,7 @@ const NewActivity = () => {
                     <div className="d-flex align-items-center">
                         <Dropdown
                             mr="15px"
+                            sortItem={(val) => sortItem(val)}
                         />
                         <Form 
                             submit={() => addData()} 

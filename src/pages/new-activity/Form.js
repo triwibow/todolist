@@ -51,8 +51,6 @@ const Form = (props) => {
         })
         props.change(event);
     }
-
-    console.log(validator);
     
     const handleSelectChange = (event) => {
         setSelectedOption({
