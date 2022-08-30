@@ -185,24 +185,14 @@ const Form = (props) => {
                 </Modal.Body>
                 <Modal.Footer>
                     <button onClick={handleClose} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    {disable ? (
-                        <button 
-                            data-cy="modal-add-save-button" 
-                            type="submit" 
-                            className="btn btn-primary"
-                            disabled
-                        >
-                            Save changes
-                        </button>
-                    ): (
-                        <button 
-                            data-cy="modal-add-save-button" 
-                            type="submit" 
-                            className="btn btn-primary"
-                        >
-                            Save changes
-                        </button>
-                    )}
+                    <button 
+                        data-cy="modal-add-save-button" 
+                        type="submit" 
+                        className="btn btn-primary"
+                        disabled={disable}
+                    >
+                        Save changes
+                    </button>
                 </Modal.Footer>
             </form>
             
