@@ -336,7 +336,7 @@ const NewActivity = () => {
                     </div>
                     
                 </div>
-                <div className="col-md-12">
+                <div className="col-md-12" data-cy="todo-empty-state">
                     {error? (
                         <div className="row">
                             <div className="col-md-12 text-center">
