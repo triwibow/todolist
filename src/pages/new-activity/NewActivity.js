@@ -397,21 +397,20 @@ const NewActivity = () => {
             setData(tmp);
         }
 
-        // if(val === "belum-selesai"){
-        //     const notEnd = [...data].filter(item => {
-        //         return item.is_active === 1;
-        //     });
+        if(val === "belum-selesai"){
+            const tmp = [...data].sort((a, b) => {
+                if (b.title.toLowerCase() > a.title.toLowerCase()) {
+                    return -1;
+                }
+                if (a.title.toLowerCase() > b.title.toLowerCase()) {
+                    return 1;
+                }
+                return 0;
+            });
 
-        //     const end = [...data].filter(item  => {
-        //         return item.is_active === 0;
-        //     });
+            setData(tmp);
 
-        //     const tmp = notEnd.concat(end);
-
-        //     console.log(tmp);
-        //     setData(tmp);
-
-        // }
+        }
     }
 
     useEffect(() => {
