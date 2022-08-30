@@ -360,8 +360,6 @@ const NewActivity = () => {
     }
 
     const sortItem = (val) => {
-        console.log(val);
-        console.log(data);
 
         if(val === "baru"){
             const tmp = [...data].sort((a, b) => {
@@ -399,21 +397,21 @@ const NewActivity = () => {
             setData(tmp);
         }
 
-        if(val === "belum-selesai"){
-            const notEnd = [...data].filter(item => {
-                return item.is_active === 1;
-            });
+        // if(val === "belum-selesai"){
+        //     const notEnd = [...data].filter(item => {
+        //         return item.is_active === 1;
+        //     });
 
-            const end = [...data].filter(item  => {
-                return item.is_active === 0;
-            });
+        //     const end = [...data].filter(item  => {
+        //         return item.is_active === 0;
+        //     });
 
-            const tmp = notEnd.concat(end);
+        //     const tmp = notEnd.concat(end);
 
-            console.log(tmp);
-            setData(tmp);
+        //     console.log(tmp);
+        //     setData(tmp);
 
-        }
+        // }
     }
 
     useEffect(() => {
