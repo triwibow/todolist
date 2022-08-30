@@ -101,11 +101,8 @@ const DashboardActivity = () => {
                 loading: true,
                 message: ""
             });
-
-            const params = {
-                id:id
-            }
-            const response = await API.delete('/activity-groups', params);
+            
+            const response = await API.delete(`/activity-groups?id=${id}`);
             
             if(response.status !== 200){
                 setStatus({
