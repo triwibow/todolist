@@ -3,6 +3,9 @@ import { useEffect, useState } from 'react';
 import Select, {components} from 'react-select';
 import Modal from 'react-bootstrap/Modal';
 import Button  from 'react-bootstrap/Button';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
 const { Option } = components;
 
@@ -113,7 +116,7 @@ const Form = (props) => {
                                 name="priority"
                                 components={{ Option: IconOption }} 
                             /> */}
-                            <select data-cy="modal-add-priority-item" className="select-priority" name="priority" onChange={handleChange}>
+                            <select data-cy="modal-add-priority-dropdown" className="select-priority" name="priority" onChange={handleChange}>
                                 <option data-cy="modal-add-priority-item" value="">Pilih Priority</option>
                                 <option data-cy="modal-add-priority-item" value="very-high">Very High</option>
                                 <option data-cy="modal-add-priority-item" value="high">High</option>
@@ -121,6 +124,7 @@ const Form = (props) => {
                                 <option data-cy="modal-add-priority-item" value="low">Low</option>
                                 <option data-cy="modal-add-priority-item" value="very-low">Very Low</option>
                             </select>
+
                         </div>
                     </div>
                 </Modal.Body>
