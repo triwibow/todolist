@@ -294,6 +294,17 @@ const NewActivity = () => {
         loadDetail();
     }, [])
 
+    useEffect(() => {
+        window.onclick = (e) => {
+            if(!e.target.classList.contains('todo-title')){
+                if(openTitle){
+                    setOpenTitle(false);
+                }
+            } 
+        }
+    }, [openTitle]);
+
+
     return(
         <div className="container py-4">
             <FormEdit 
@@ -311,20 +322,19 @@ const NewActivity = () => {
                         </Link>
                         <div>
                             {!openTitle ? (
-                                <h3 data-cy="todo-title" style={{fontSize:"28px"}} className="fw-bold mb-0">{title}</h3>
+                                <h3 onClick={() => setOpenTitle((openTitle)? false:true)}  data-cy="todo-title" style={{fontSize:"28px"}} className="fw-bold mb-0 todo-title">{title}</h3>
                             ): (
                                 <input 
                                     className="form-title" 
                                     type="text" 
                                     value={title} 
                                     onChange={(e) => setTitle(e.target.value)}
-                                    data-cy="todo-title"
                                 />
                             )}
                             
                         </div>
-                        <button data-cy="todo-title" type="button" className="btn-icon ms-4" onClick={() => setOpenTitle((openTitle)? false:true)}>
-                            <Icon icon="cil:pencil" color="#c4c4c4" />
+                        <button  type="button" className="btn-icon ms-4 todo-title" onClick={() => setOpenTitle((openTitle)? false:true)}>
+                            <Icon icon="cil:pencil" color="#c4c4c4" className="todo-title" />
                         </button>
                     </div>
                     <div className="d-flex align-items-center">
