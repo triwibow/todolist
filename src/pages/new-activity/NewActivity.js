@@ -322,6 +322,43 @@ const NewActivity = () => {
         }
     }
 
+    const changeStatus = async (id, status) => {
+        try {
+            setStatus({
+                status:false,
+                loading: true,
+                message: ""
+            });
+
+            const params = {
+                is_active: (status)?0:1
+            }
+
+            const response = await API.patch(`/todo-items/${id}`, params);
+            if(response.status !== 201){
+                setStatus({
+                    status:true,
+                    loading:false,
+                    message: "Terjadi Kesalahan"
+                })
+                return;
+            }            
+
+            setStatus({
+                status: true,
+                loading:false,
+                message: "Berhasil merubah status"
+            });
+        } catch(e)
+        {
+            setStatus({
+                status:true,
+                loading:false,
+                message: "Terjadi Kesalahan"
+            })
+        }
+    }
+
     useEffect(() => {
         loadData();
     }, []);
@@ -407,6 +444,7 @@ const NewActivity = () => {
                                                 setEditId={setEditId}
                                                 getDetail={(id)=>getDetail(id)}
                                                 delete={(id) => deleteData(id)}
+                                                changeStatus={(id, status) => changeStatus(id, status)}
                                             />
                                 })}
                             </div>

@@ -43,6 +43,8 @@ const ListItem = (props) => {
         } else {
             setIsCHeck(false);
         }
+
+        props.changeStatus(props.data.id,event.target.checked);
     }
 
     return (
