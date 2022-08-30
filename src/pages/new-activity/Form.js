@@ -92,16 +92,6 @@ const Form = (props) => {
 
     const handleClose = () => {
         setShow(false);
-        setDisable(true);
-        setShowPriority({
-            status: false,
-            value: "",
-            label: "Pilih Priority"
-        });
-        setValidator({
-            title: "",
-            priority: ""
-        })
     }
 
     const handleShow = () => {
