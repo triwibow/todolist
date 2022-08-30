@@ -4,7 +4,6 @@ import Select, {components} from 'react-select';
 import Modal from 'react-bootstrap/Modal';
 import Button  from 'react-bootstrap/Button';
 
-
 const { Option } = components;
 
 const IconOption = (props) => {
@@ -21,6 +20,10 @@ const Form = (props) => {
     const [disable, setDisable] = useState("disabled");
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const [validator, setValidator] = useState({
+        title: "",
+        priority: ""
+    });
 
     const [selectedOption, setSelectedOption] = useState({
         name: "priority",
@@ -29,20 +32,20 @@ const Form = (props) => {
     });
     const handleSubmit = (event)=> {
         event.preventDefault();
+        setDisable("disabled");
         props.submit();
     }
 
     const handleChange = (event) => {
-        if(event.target.name === "title"){
-            if(event.target.value === ""){
-                setDisable("disabled");
-            } else {
-                setDisable("");
-            }
-        }
+        setValidator({
+            ...validator,
+            [event.target.name]:event.target.value
+        })
         props.change(event);
     }
 
+    console.log(validator);
+    
     const handleSelectChange = (event) => {
         setSelectedOption({
             ...selectedOption,
@@ -59,9 +62,14 @@ const Form = (props) => {
         { value: 'very-low', label:'Very Low', color:'#8942C1'}
     ]
 
+
     useEffect(() => {
-        props.change({target:selectedOption})
-    }, [selectedOption.value]);
+        if(validator.title ==="" || validator.priority === ""){
+            setDisable("disabled");
+        } else {
+            setDisable("");
+        }
+    }, [validator])
 
     return (
         <>
@@ -80,7 +88,7 @@ const Form = (props) => {
         >
             <Modal.Header>
                 <h5 data-cy="modal-add-title" className="modal-title" id="exampleModalLabel">Tambah List Item</h5>
-                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button onClick={handleClose} type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </Modal.Header>
             <form onSubmit={handleSubmit}>
                 <Modal.Body>
@@ -98,13 +106,21 @@ const Form = (props) => {
                     <div className='form-group mb-3'>
                         <label data-cy="modal-add-priority-title" className='form-label-custom mb-2'>Priority</label>
                         <div data-cy="modal-add-priority-dropdown" style={{width: "30%"}}> 
-                            <Select 
+                            {/* <Select 
                                 defaultValue={selectedOption}
                                 options={options}
                                 onChange={handleSelectChange}
                                 name="priority"
                                 components={{ Option: IconOption }} 
-                            />
+                            /> */}
+                            <select data-cy="modal-add-priority-item" className="select-priority" name="priority" onChange={handleChange}>
+                                <option data-cy="modal-add-priority-item" value="">Pilih Priority</option>
+                                <option data-cy="modal-add-priority-item" value="very-high">Very High</option>
+                                <option data-cy="modal-add-priority-item" value="high">High</option>
+                                <option data-cy="modal-add-priority-item" value="normal">Normal</option>
+                                <option data-cy="modal-add-priority-item" value="low">Low</option>
+                                <option data-cy="modal-add-priority-item" value="very-low">Very Low</option>
+                            </select>
                         </div>
                     </div>
                 </Modal.Body>

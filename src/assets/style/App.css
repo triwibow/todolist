@@ -219,3 +219,9 @@ header {
 .form-title:focus {
     outline: none;
 }
+
+.select-priority {
+    width: 100%;
+    border: 1px solid #ced4da;
+    padding: 4px 2px;
+}
