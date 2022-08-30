@@ -286,6 +286,9 @@ const NewActivity = () => {
         }
     }
 
+    const changeTitle = (event) => {
+        setTitle(event.target.value);
+    }
 
     const updateTitle = async () => {
         try {
@@ -294,8 +297,11 @@ const NewActivity = () => {
                 loading: true,
                 message: ""
             });
+            const params = {
+                title: title
+            }
 
-            const response = await API.patch(`/activity-groups/${id}`);
+            const response = await API.patch(`/activity-groups/${id}`, params);
 
             if(response.status !== 200){
                 setStatus({
@@ -359,7 +365,7 @@ const NewActivity = () => {
                                     className="form-title todo-title" 
                                     type="text" 
                                     value={title} 
-                                    onChange={(e) => setTitle(e.target.value)}
+                                    onChange={changeTitle}
                                 />
                             )}
                             
