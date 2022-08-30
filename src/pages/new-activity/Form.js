@@ -41,6 +41,17 @@ const Form = (props) => {
     const handleSubmit = (event)=> {
         event.preventDefault();
         props.submit();
+        setValidator({
+            title: "",
+            priority:""
+        });
+
+        setShowPriority({
+            status: false,
+            value: "",
+            label: "Pilih Priority"
+        });
+
         handleClose();
     }
 
@@ -136,6 +147,7 @@ const Form = (props) => {
                             type="text" 
                             className="form-control" 
                             onChange={handleChange}
+                            value={validator.title}
                         />
                     </div>
                     <div className='form-group mb-3'>
@@ -174,7 +186,6 @@ const Form = (props) => {
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <button onClick={handleClose} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button 
                         data-cy="modal-add-save-button" 
                         type="submit" 
