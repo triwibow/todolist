@@ -124,7 +124,8 @@ const Form = (props) => {
             <Icon icon="ant-design:plus-outlined" color="white" width="21" height="21" />
             <span className="ms-2">Tambah</span>
         </Button>
-        <Modal
+        {show && (
+            <Modal
             show={show}
             onHide={handleClose}
             keyboard={false}
@@ -196,8 +197,8 @@ const Form = (props) => {
                     </button>
                 </Modal.Footer>
             </form>
-            
         </Modal>
+        )}
         </>
     )
 }
