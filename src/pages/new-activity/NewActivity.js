@@ -286,6 +286,36 @@ const NewActivity = () => {
         }
     }
 
+
+    const updateTitle = async () => {
+        try {
+            setStatus({
+                status:false,
+                loading: true,
+                message: ""
+            });
+
+            const response = await API.patch(`/activity-groups/${id}`);
+
+            if(response.status !== 200){
+                setStatus({
+                    status:true,
+                    loading:false,
+                    message: "Terjadi Kesalahan"
+                })
+                return;
+            }
+
+        } catch(e)
+        {
+            setStatus({
+                status:true,
+                loading:false,
+                message: "Terjadi Kesalahan"
+            })
+        }
+    }
+
     useEffect(() => {
         loadData();
     }, []);
@@ -299,6 +329,7 @@ const NewActivity = () => {
             if(!e.target.classList.contains('todo-title')){
                 if(openTitle){
                     setOpenTitle(false);
+                    updateTitle();
                 }
             } 
         }
@@ -325,7 +356,7 @@ const NewActivity = () => {
                                 <h3 onClick={() => setOpenTitle((openTitle)? false:true)}  data-cy="todo-title" style={{fontSize:"28px"}} className="fw-bold mb-0 todo-title">{title}</h3>
                             ): (
                                 <input 
-                                    className="form-title" 
+                                    className="form-title todo-title" 
                                     type="text" 
                                     value={title} 
                                     onChange={(e) => setTitle(e.target.value)}
