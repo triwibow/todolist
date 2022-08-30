@@ -20,9 +20,8 @@ const IconOption = (props) => {
 
 const Form = (props) => {
     const [show, setShow] = useState(false);
-    const [disable, setDisable] = useState("disabled");
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const [disable, setDisable] = useState(true);
+   
     const [validator, setValidator] = useState({
         title: "",
         priority: ""
@@ -41,17 +40,8 @@ const Form = (props) => {
     });
     const handleSubmit = (event)=> {
         event.preventDefault();
-        setDisable("disabled");
-        setShowPriority({
-            status: false,
-            value: "",
-            label: "Pilih Priority"
-        });
-        setValidator({
-            title: "",
-            priority: ""
-        })
         props.submit();
+        handleClose();
     }
 
     const handleChange = (event) => {
@@ -100,12 +90,30 @@ const Form = (props) => {
         { value: 'very-low', label:'Very Low', color:'#8942C1'}
     ]
 
+    const handleClose = () => {
+        setShow(false);
+        setDisable(true);
+        setShowPriority({
+            status: false,
+            value: "",
+            label: "Pilih Priority"
+        });
+        setValidator({
+            title: "",
+            priority: ""
+        })
+    }
+
+    const handleShow = () => {
+        setShow(true);
+    }
+
 
     useEffect(() => {
         if(validator.title ==="" || validator.priority === ""){
-            setDisable("disabled");
+            setDisable(true);
         } else {
-            setDisable("");
+            setDisable(false);
         }
     }, [validator])
 
@@ -138,7 +146,6 @@ const Form = (props) => {
                             type="text" 
                             className="form-control" 
                             onChange={handleChange}
-                            value={props.data.title} 
                         />
                     </div>
                     <div className='form-group mb-3'>
@@ -178,15 +185,24 @@ const Form = (props) => {
                 </Modal.Body>
                 <Modal.Footer>
                     <button onClick={handleClose} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button 
-                        onClick={handleClose} 
-                        data-cy="modal-add-save-button" 
-                        type="submit" 
-                        className="btn btn-primary"
-                        disabled={disable}
-                    >
-                        Save changes
-                    </button>
+                    {disable ? (
+                        <button 
+                            data-cy="modal-add-save-button" 
+                            type="submit" 
+                            className="btn btn-primary"
+                            disabled
+                        >
+                            Save changes
+                        </button>
+                    ): (
+                        <button 
+                            data-cy="modal-add-save-button" 
+                            type="submit" 
+                            className="btn btn-primary"
+                        >
+                            Save changes
+                        </button>
+                    )}
                 </Modal.Footer>
             </form>
             
