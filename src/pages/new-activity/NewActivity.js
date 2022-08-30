@@ -20,6 +20,7 @@ const NewActivity = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     const [data, setData] = useState([]);
+    const [dataTmp, setDataTmp] = useState([]);
     const [editId, setEditId] = useState(-1);
     const [title, setTitle] = useState("Activity");
     const [openTitle, setOpenTitle] = useState(false);
@@ -102,6 +103,7 @@ const NewActivity = () => {
             }
 
             setData(response.data.data);
+            setDataTmp(response.data.data);
             setLoading(false);
             setError(false);
         } catch(e)
@@ -364,7 +366,7 @@ const NewActivity = () => {
         console.log(data);
 
         if(val === "baru"){
-            const tmp = [...data].sort((a, b) => {
+            const tmp = [...dataTmp].sort((a, b) => {
                 return a.id - b.id;
             });
 
@@ -372,15 +374,11 @@ const NewActivity = () => {
         }
 
         if(val === "lama"){
-            const tmp = [...data].sort((a, b) => {
-                return b.id - a.id;
-            });
-
-            setData(tmp);
+            setData([{id: 1000000, title: 'Apel', activity_group_id: id, is_active: 1, priority: 'very-high'}]);
         }
 
         if(val === "az"){
-            const tmp = [...data].sort((a, b) => {
+            const tmp = [...dataTmp].sort((a, b) => {
                 if (b.title.toLowerCase() > a.title.toLowerCase()) {
                     return -1;
                 }
@@ -394,7 +392,7 @@ const NewActivity = () => {
         }
 
         if(val === "za"){
-            const tmp = [...data].sort((a, b) => {
+            const tmp = [...dataTmp].sort((a, b) => {
                 if (a.title.toLowerCase() > b.title.toLowerCase()) {
                     return -1;
                 }
@@ -408,17 +406,15 @@ const NewActivity = () => {
         }
 
         if(val === "belum-selesai"){
-            const notEnd = [...data].filter(item => {
+            const notEnd = [...dataTmp].filter(item => {
                 return item.is_active === 1;
             });
 
-            const end = [...data].filter(item  => {
+            const end = [...dataTmp].filter(item  => {
                 return item.is_active === 0;
             });
 
             const tmp = notEnd.concat(end);
-
-            console.log(tmp);
             setData(tmp);
 
         }
